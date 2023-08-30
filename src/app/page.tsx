@@ -6,6 +6,17 @@ function getTodos() {
   return prisma.todo.findMany()
 }
 
+async function togleTodo(id:string, complete:boolean) {
+  "use server"
+
+  await prisma.todo.update({where: {id}, data: {complete}})
+}
+async function deleteTodo(id:string) {
+  "use server"
+
+  await prisma.todo.delete({where: {id}})
+}
+
 export default async function Home() {
   // fake add todo item
   // await prisma.todo.create({data: {title:"test", complete: false}})
@@ -26,7 +37,7 @@ export default async function Home() {
       <ul className="pl-4">
         {todos.map(todo => {
           return (
-            <TodoItem key={todo.id} {...todo} />
+            <TodoItem key={todo.id} {...todo} togleTodo={togleTodo} deleteTodo={deleteTodo}/>
           );
         })}
       </ul>
