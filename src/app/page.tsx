@@ -20,7 +20,7 @@ export default async function Home() {
           className="boder border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none" 
           href={"/new"}
         >
-          New
+          Add a todo
         </Link>
       </header>
       <ul className="pl-4">
